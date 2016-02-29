@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="TQBlog V2.0 Release 20140101" />
+<meta name="robots" content="none" />
+<title>www.tqblog.com - 文章新增 - Powered by TQBlog</title>
+<link href="Public/css/admin.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="Public/css/jquery.bettertip.css" type="text/css" media="screen" />
+<link rel="stylesheet" type="text/css" href="Public/css/jquery-ui.custom.css"/>
+<script src="Public/script/common.js" type="text/javascript"></script>
+<script src="Public/script/jquery.bettertip.pack.js" type="text/javascript"></script>
+<script src="Public/script/jquery-ui.custom.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="Public/script/jquery.tagto.js"></script>
+<script type="text/javascript" src="Public/script/jquery-ui-timepicker-addon.js"></script>
+<script type="text/javascript" src="Public/plugins/ckeditor/ckeditor.js"></script>
+</head>
+<body>
+<section class="main"><div id="divMain">
+<div class="divHeader2" style='padding-left: 38px; background: transparent url("Public/image/admin/new_32.png") no-repeat scroll 1px 8px / 32px auto;'>文章新增</div>
+<div class="SubMenu"></div>
+<div id="divMain2" class="edit post_edit">
+<form id="edit" name="edit" method="post" action="#">
+  <input type="hidden" name="module" value="article"/>
+  <input type="hidden" name="action" value="insertArti"/>
+  <div id="divEditLeft" style="float:left">
+    <div id="divEditTitle">
+      <input type="hidden" name="ID" id="edtID" value="0" />
+      <input type="hidden" name="Type" id="edtType" value="0" />
+      <!-- title( -->
+		<div id='titleheader' class='editmod'>
+			<label for="edtTitle" class="editinputname" >标题</label>
+			<div><input type="text" name="Title" id="edtTitle" style="width:500px"  maxlength="100" onBlur="if(this.value=='') this.value='未命名'" onFocus="if(this.value=='未命名') this.value=''" value="未命名" /></div>
+      </div>
+      <!-- )title -->
+
+    </div>
+    <div id="divContent" style="clear:both;width:76%">
+		<div id='cheader' class='editmod'><label for="editor_content" class="editinputname" >正文</label>&nbsp;&nbsp;<span id="timemsg"></span><span id="msg2"></span><span id="msg"></span><span class="editinputname" ></span></div>
+		<div id='carea' class='editmod'>
+			<textarea id="editor_content" name="Content"></textarea>
+			<script>
+				//调用CKEDITOR对象以及replace方法
+				CKEDITOR.replace('editor_content',{
+					//加载定义配置文件
+					customConfig : 'config_user.js'	//相对ckeditor.js
+				});
+			</script>
+		</div>
+		<div id="contentready" style="display:none"><img alt="loading" id="statloading1" src="Public/image/admin/loading.gif"/>Waiting...</div>
+
+	<div class="editmod" id="alias"><label class="editinputname" for="edtAlias">别名</label>
+        <input type="text" value="" maxlength="250" style="width:500px" id="edtAlias" name="Alias">
+      </div>
+
+    <!-- 1号输出接口 -->
+       <div id='response' class='editmod'>
+	   </div>
+	   <div id="divIntro" style="display:none;">
+       <div id='introheader' class='editmod'><label for="editor_intro" class="editinputname" >摘要</label></div>
+       <div id="introready" style="display:none"><img alt="loading" id="statloading2" src="Public/image/admin/loading.gif"/>Waiting...</div>
+	   <hr/>
+    </div>
+    <!-- 2号输出接口 -->
+       <div id='response2' class='editmod'>
+	   </div>
+	</div>
+
+  </div>
+  <!-- divEditLeft -->
+
+  <div id="divEditRight">
+    <div id="divEditPost">
+      <div id="divBox">
+        <div id="divFloat">
+
+          <!-- cate -->          <div id='cate' class='editmod'> <label for="cmbTemplate" class="editinputname" >分类</label>
+            <select style="width:180px;" class="edit" size="1" name="CateID" id="cmbCateID">         
+				<?php foreach($this->data['categories'] as $v):?>
+				<option value="<?php echo $v['c_id'];?>">
+					<?php echo str_repeat("&nbsp;&nbsp;",$v['level']*2),$v['c_name'];?>
+				</option>
+				<?php endforeach;?>
+			</select>
+          </div>
+          <!-- cate -->
+          <!-- level -->
+          <div id='level' class='editmod'> <label for="cmbPostStatus" class="editinputname" >状态</label>
+            <select class="edit" style="width:180px;" size="1" name="Status" id="cmbPostStatus" onChange="edtLevel.value=this.options[this.selectedIndex].value">
+<option value="1" selected="selected" >公开</option><option value="2"  >草稿</option><option value="3"  >审核</option>            </select>
+          </div>
+
+          <!-- )level -->
+
+          <!-- newdatetime( -->
+          <div id='newdatetime' class='editmod'><label for="edtDateTime" class="editinputname" >日期</label>
+            <input type="text" name="PostTime" id="edtDateTime"  value="<?php echo date('Y-m-d H:i:s',time());?>" style="width:171px;"/>
+            </div>
+	          <div id='post' class='editmod'>
+            <input class="button" style="width:180px;height:38px;" type="submit" value="提交" id="btnPost" onclick='return checkArticleInfo();' />
+          </div>
+
+          <!-- )newdatetime -->
+
+          <!-- Navbar( -->          <!-- )Navbar -->
+
+          <!-- 3号输出接口 -->
+          <div id='response3' class='editmod'>
+	      </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- divEditRight -->
+
+</form>
+</div>
+
+<script type="text/javascript">ActiveLeftMenu("aArticleEdt");</script><script type="text/javascript">AddHeaderIcon("image/admin/new_32.png");</script>
+<script type="text/javascript">
+
+var tag_loaded=false; //是否已经ajax读取过TAGS
+
+//日期时间控件
+$.datepicker.regional['zh-cn'] = {
+  closeText: '完成',
+  prevText: '上个月',
+  nextText: '下个月',
+  currentText: '现在',
+  monthNames: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
+  monthNamesShort: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
+  dayNames: ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],
+  dayNamesShort: ['周日','周一','周二','周三','周四','周五','周六'],
+  dayNamesMin: ['日','一','二','三','四','五','六'],
+  weekHeader: '周',
+  dateFormat: 'yy-mm-dd',
+  firstDay: 1,
+  isRTL: false,
+  showMonthAfterYear: true,
+  yearSuffix: ' 年  '
+};
+$.datepicker.setDefaults($.datepicker.regional['zh-cn']);
+$.timepicker.regional['zh-cn'] = {
+  timeOnlyTitle: '时间',
+  timeText: '时间',
+  hourText: '小时',
+  minuteText: '分钟',
+  secondText: '秒钟',
+  millisecText: '毫秒',
+  currentText: '现在',
+  closeText: '完成',
+  timeFormat: 'hh:mm:ss',
+  ampm: false
+};
+$.timepicker.setDefaults($.timepicker.regional['zh-cn']);
+$('#edtDateTime').datetimepicker({
+  showSecond: true
+  //changeMonth: true,
+  //changeYear: true
+});
+
+
+//显示tags
+$(document).click(function (event){$('#ulTag').slideUp("fast");});
+
+$('#showtags').click(function (event) {
+  event.stopPropagation();
+  var offset = $(event.target).offset();
+  $('#ulTag').css({ top: offset.top + $(event.target).height()+20+ "px", left: offset.left});
+  $('#ulTag').slideDown("fast");
+  if(tag_loaded==false){$.getScript('../admin.php?act=misc&type=showtags');tag_loaded=true;}
+  return false;
+});
+function AddKey(i) {
+  var strKey=$('#edtTag').val();
+  var strNow=","+i
+  if(strKey==""){
+    strNow=i
+  }
+  if(strKey.indexOf(strNow)==-1){
+    strKey=strKey+strNow;
+  }
+  $('#edtTag').val(strKey);
+}
+function DelKey(i) {
+  var strKey=$('#edtTag').val();
+  var strNow="{"+i+"}"
+  if(strKey.indexOf(strNow)!=-1){
+    strKey=strKey.substring(0,strKey.indexOf(strNow))+strKey.substring(strKey.indexOf(strNow)+strNow.length,strKey.length)
+  }
+  $('#edtTag').val(strKey);
+}
+
+//提取摘要
+function AutoIntro() {
+  var s=editor_api.editor.content.get();
+  if(s.indexOf("<hr class=\"more\" />")>-1){
+    editor_api.editor.intro.put(s.split("<hr class=\"more\" />")[0]);
+  }else{
+	  if(s.indexOf("<hr class=\"more\"/>")>-1){
+      editor_api.editor.intro.put(s.split("<hr class=\"more\"/>")[0]);
+  	}else{
+	  	editor_api.editor.intro.put(s.substring(0,250));
+  	}
+  }
+	$("#divIntro").show();
+	$('html,body').animate({scrollTop:$('#divIntro').offset().top},'fast');
+}
+
+//文章编辑提交区随动JS开始
+var oDiv=document.getElementById("divFloat");
+var H=0;var Y=oDiv;
+while(Y){H+=Y.offsetTop;Y=Y.offsetParent;};
+$(window).bind("scroll resize",function(){
+  var s=document.body.scrollTop||document.documentElement.scrollTop;
+  if(s>H){
+    $("#divFloat").addClass("boxfloat");
+  }
+  else{
+	$("#divFloat").removeClass("boxfloat");
+  }
+});
+</script>
+</div>
+</section></body>
+</html><!--75.817ms-->

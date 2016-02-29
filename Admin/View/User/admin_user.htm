@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="Public/css/admin.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="Public/css/jquery.bettertip.css" type="text/css" media="screen" />
+<link rel="stylesheet" type="text/css" href="Public/css/jquery-ui.custom.css"/>
+<script src="Public/script/common.js" type="text/javascript"></script>
+<script src="Public/script/jquery.bettertip.pack.js" type="text/javascript"></script>
+<script src="Public/script/jquery-ui.custom.min.js" type="text/javascript"></script>
+</head>
+<section class="main">
+<div id="divMain">
+	<div class="divHeader"  style='padding-left: 38px; background: transparent url("Public/image/admin/home_32.png") no-repeat scroll 1px 8px / 32px auto;'>用户中心</div>
+	<div class="SubMenu"></div>
+	<div id="divMain2">
+		<table class="tableFull tableBorder" id="tbStatistic">
+			<tr align='center'>
+				<th>用户名</th>
+				<th>昵称</th>
+				<th>上次登录时间</th>
+				<th>上次登录IP</th>
+				<th>当前头像</th>
+			</tr>
+			<tr align='center'>
+				<td><?php echo $this->data['user']['a_account'];?></td>
+				<td><?php echo $this->data['user']['a_nickname'];?></td>
+				<td><?php echo date('Y-m-d H:i:s',$this->data['user']['a_last_time']);?></td>
+				<td><?php echo $this->data['user']['a_last_ip'];?></td>
+				<td><img width="40" height="40" src="<?php echo $this->data['user']['a_head_image'] ? 'Upload/' . $this->data['user']['a_head_image'] : 'Public/image/admin/0.png';?>"/></td>
+			</tr>
+			<tr>
+				<td colspan="5" style="text-align:right"><a href="admin.php?module=user&action=edit&id=<?php echo $this->data['user']['a_id']?>">编辑</a></td>
+			</tr>
+		<script type="text/javascript">$(document).ready(function(){ statistic(''); });</script>
+		</table>
+		
+	</div><script type="text/javascript">ActiveTopMenu("topmenu1");</script><script type="text/javascript">AddHeaderIcon("image/home_32.png");</script></div>
+</section>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="TQBlog V2.0 Release 20140101" />
+<meta name="robots" content="none" />
+<title>www.tqblog.com - 评论管理 - Powered by TQBlog</title>
+<link href="Public/css/admin.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="Public/css/jquery.bettertip.css" type="text/css" media="screen" />
+<link rel="stylesheet" type="text/css" href="Public/css/jquery-ui.custom.css"/>
+<script src="Public/script/common.js" type="text/javascript"></script>
+<script src="Public/script/jquery.bettertip.pack.js" type="text/javascript"></script>
+<script src="Public/script/jquery-ui.custom.min.js" type="text/javascript"></script>
+</head>
+<body>
+<section class="main">
+<div id="divMain">
+<div class="divHeader">评论管理</div>
+<div class="SubMenu"><a href="content/plugin/Security/main.php"><span class="m-right">Security设置</span></a><a href=""><span class="m-left ">审核评论</span></a></div>
+<div id="divMain2">
+<form class="search" id="search" method="post" action="#">
+	<p>搜索&nbsp;&nbsp;&nbsp;&nbsp;<input name="search" style="width:450px;" type="text" value="" /> &nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="button" value="提交"/>
+	</p>
+</form>
+<form method="post" action="">
+	<table border="1" class="tableFull tableBorder tableBorder-thcenter">
+		<tr>
+			<th>游客ID</th>
+			<th>游客IP</th>
+			<th>回复ID</th>
+			<th>评论内容</th>
+			<th>文章</th>
+			<th>日期</th>
+			<th>操作</th>
+		</tr>
+		<?php foreach($this->data['messages'] as $v){ ?>
+		<tr>
+			<td><?php echo $v['m_visitor_id'];?></td>
+			<td><?php echo $v['m_visitor_ip'];?></td>
+			<td><?php echo $v['m_parent_id']?></td>
+			<td><?php echo $v['m_content'];?></td>
+			<td><?php echo $v['a_id'];?></td>
+			<td><?php echo $v['m_time'];?></td>
+			<td><a href="admin.php?module=message&action=deleteMess&id=<?php echo $v['m_id'];?>">删除</a></td>
+		</tr>
+		<?php } ?>
+	</table><hr/>
+	<p style="float:right;">
+		
+	</p><hr/>
+</form>
+</div>
+<script type="text/javascript">ActiveLeftMenu("aCommentAdmin");</script>
+<script type="text/javascript">AddHeaderIcon("image/Public/comments_32.png");</script></div>
+</section>
+</body>
+</html><!--60.413ms-->

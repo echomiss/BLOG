@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="robots" content="none" />
+    <link rel="shortcut icon" href="../favicon.ico" />
+	<link rel="stylesheet" href="Public/css/module.css" type="text/css" media="screen" />
+	<script src="Public/script/common.js" type="text/javascript"></script>
+	<script src="Public/script/md5.js" type="text/javascript"></script>
+	<title>www.myblog.com - 登录 - Powered by myblog</title>
+</head>
+<body>
+
+<!-- top bar -->
+<div id="top">
+	<div class="center">
+    <div class="menu-left">
+    <ul>
+     <li><a href="../">返回首页</a></li>    
+    </ul>
+    </div>
+    <div class="menu-right">
+    <ul>
+     	<li></li> 
+    </ul>
+    </div>
+   </div>	
+</div>
+
+<div class="bg">
+<div id="wrapper">
+  <div class="logo"><a href="../" title="www.myblog.com"></a></div>
+  <div class="login">
+    <form method="post" action="action.php">
+    <dl>
+      <dt></dt>
+      <dd class="username"><label for="edtUserName">用户名:</label><input type="text" id="edtUserName" name="edtUserName" size="20" value="" tabindex="1" /></dd>
+      <dd class="password"><label for="edtPassWord">密码:</label><input type="password" id="edtPassWord" name="edtPassWord" size="20" tabindex="2" /></dd>
+    </dl>
+	<dl>
+		<dt></dt>
+		<dd class="username"><label for="edtCaptcha">验证码:</label><input type="text" id="edtCaptcha" name="edtCaptcha" size="4" value="" tabindex="3" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="admin.php?action=getCaptcha" onclick="this.src='admin.php?action=getCaptcha&'+Math.random()" alt="验证码图片" title="看不清？点击验证码刷新"/></dd>
+	</dl>
+    <dl>
+      <dt></dt>
+      <dd class="checkbox"><input type="checkbox" name="chkRemember" id="chkRemember"  tabindex="4" /><label for="chkRemember">保持登录</label></dd>
+      <dd class="submit"><input id="btnPost" name="btnPost" type="submit" value="登录" class="button" tabindex="5"/></dd>
+    </dl>
+	<input type="hidden" name="username" id="username" value="" />
+	<input type="hidden" name="password" id="password" value="" />
+	<input type="hidden" name="captcha" id="captcha" value="" />
+	<input type="hidden" name="savedate" id="savedate" value="0" />
+    </form>
+  </div>
+</div>
+</div>
+
+<script type="text/javascript">
+
+$("#btnPost").click(function(){
+
+	var strUserName=$("#edtUserName").val();
+	var strPassWord=$("#edtPassWord").val();
+	var strCaptcha=$("#edtCaptcha").val();
+	var strSaveDate=$("#savedate").val();
+	
+
+	if((strUserName=="")||(strPassWord=="")){
+		alert("用户名和密码不能为空！");
+		return false;
+	}
+
+	if(strCaptcha == ""){
+		alert("验证码不能为空！");
+		return false;
+	}
+
+	$("#edtUserName").remove();
+	$("#edtPassWord").remove();
+	$("#edtCaptcha").remove();
+
+	strUserName=strUserName;
+	strPassWord=MD5(strPassWord);
+
+	$("form").attr("action","admin.php?action=verify");
+	$("#username").val(strUserName);
+	$("#password").val(strPassWord);
+	$("#captcha").val(strCaptcha);
+	$("#savedate").val(strSaveDate);
+
+})
+
+$(document).ready(function(){
+	if (!$.support.leadingWhitespace) {
+		alert("骚年,你还在用IE6,7,8内核的浏览器么?请升级至支持html5的IE9吧!\r\n要不咱换个Chrome,Firefox试试(—.—||||");
+	}
+});
+
+$("#chkRemember").click(function(){
+	$("#savedate").attr("value",$("#chkRemember").attr("checked")=="checked"?30:0);
+})
+</script>
+</body>
+</html>
+<!--82.403ms-->

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="TQBlog V2.0 Release 20140101" />
+<meta name="robots" content="none" />
+<title>www.myblog.com - 后台首页 - Powered by PHP150912</title>
+<link href="Public/css/admin.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="Public/css/jquery.bettertip.css" type="text/css" media="screen" />
+<link rel="stylesheet" type="text/css" href="Public/css/jquery-ui.custom.css"/>
+<script src="Public/script/common.js" type="text/javascript"></script>
+<script src="Public/script/admin_util.php" type="text/javascript"></script>
+<script src="Public/script/jquery.bettertip.pack.js" type="text/javascript"></script>
+<script src="Public/script/jquery-ui.custom.min.js" type="text/javascript"></script>
+</head>
+<header class="header">    <div class="logo"><a href="admin.php?act=admin" title="myblog"></a></div>
+    <div class="user" style="width:600px"> <a target='mainFrame' href="admin.php?module=user&id=<?php echo $_SESSION['user']['a_id'];?>" title="编辑"><img src="<?php echo $_SESSION['user']['a_head_image'] ? 'Upload/' . $_SESSION['user']['a_head_image'] : 'Public/image/admin/0.png';?>" width="40" height="40" id="avatar" alt="Avatar" /></a>
+      <div class="username">管理员：<?php echo $this->data['username'];?> | 上次登录时间：<?php echo $this->data['last_time']?> | 上次登录IP：<?php echo $this->data['last_ip']?></div>
+      <div class="userbtn"><a class="profile" href="../index.php" target="_blank">前台首页</a>&nbsp;&nbsp;<a class="logout" href="admin.php?action=logout" title="" target="_top">退出登录</a></div>
+    </div>
+    <div class="menu">
+      <ul id="topmenu">
+<li id="topmenu1"><a href="">后台首页</a></li><li id="topmenu2"><a href="#">站点设置</a></li><li id="topmenu3"><a href="#">myblog官网</a></li>      </ul>
+    </div>
+</header>

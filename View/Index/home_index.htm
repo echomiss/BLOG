@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta http-equiv="Content-Language" content="zh-CN" />
+	<title>www.myblog.com - Welcome to 我的博客 - Powered by PHP150912</title>
+	<link rel="shortcut icon" href="http://www.myblog.comfavicon.ico" />
+	<link rel="stylesheet" rev="stylesheet" href="Public/style/default.css" type="text/css"					media="all"/>
+	<script src="Public/script/common.js" type="text/javascript"></script>
+	<script src="" type="text/javascript"></script>
+	<link rel="alternate" type="application/rss+xml" href="" title="www.myblog.com" />
+	<link rel="EditURI" type="application/rsd+xml" title="RSD" href="" />
+	<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="xmlrpc/wlwmanifest.xml" /> 
+</head>
+<body class="multi index">
+<!-- top bar -->
+<div id="top">
+	<div class="center">
+		<div class="menu-left">
+			<ul>
+				<li><a href="javascript:;" onclick="setHomepage('http://www.myblog.com');">设为首页						</a></li>
+				<li><a href="javascript:;" onclick="addFavorite('http://www.myblog.com','www.myblog.com -				Welcome to 我的博客')">收藏本站</a></li>      
+			</ul>
+		</div>
+		<div class="menu-right">
+			<ul> 	 
+				<li><a href="Admin/admin.php">后台管理</a></li>       
+			</ul>
+		</div>
+    </div>	
+</div>
+<div id="divAll">
+	<div id="divPage">
+		<div id="divMiddle">
+			<div id="divTop">
+				<h1 id="BlogTitle"><a href="http://www.myblog.com">www.myblog.com</a></h1>
+				<h3 id="BlogSubTitle">Welcome to 我的博客</h3>
+			</div>
+			<div id="divNavBar">
+				<ul>
+					<li id="nvabar-item-index"><a href="">首页</a></li>
+					<li id="navbar-page-2"><a href="">留言本</a></li>			
+				</ul>
+			</div>
+			<div id="divMain">
+				<div class="post multi">
+					<h4 class="post-date">2015年11月09日</h4>
+					<h2 class="post-title"><a href="">欢迎使用myblog开源博客系统！</a></h2>
+					<div class="post-body">
+						<p>欢迎使用<a href="" target="_blank">myblog开源博客系统</a>,这是一篇程序自动生							成的文章.您可以删除或是编辑它:)</p>
+						<p>系统总共生成了一个&quot;留言本&quot;页面,和一个&quot;欢迎使用<a href=""								target="_blank">myblog开源博客系统!</a>&quot;文章,祝您使用愉快!</p>	
+					</div>
+					<h5 class="post-tags"></h5>
+					<h6 class="post-footer">
+						作者:admin | 分类:未分类 | 阅读:0 | 赞:0 | 评论:0	
+					</h6>
+				</div>
+				<div class="pagebar"> 
+					<a href=""><span class="page">‹‹</span></a>
+				   
+					<span class="page now-page">1</span>
+				   
+					<a href=""><span class="page">››</span></a>
+				 </div>
+			</div>
+		<div id="divSidebar">
+			<dl class="function" id="divSearchPanel">
+				<dt class="function_t">搜索</dt>
+				<dd class="function_c">
+					<div>
+						<form name="search" method="post" action="">
+							<input type="text" name="q" size="11" />		
+							<input type="submit" value="搜索" />
+						</form>
+					</div>
+				</dd>
+			</dl> 
+			<dl class="function" id="divCalendar">
+				<dt style="display:none;"></dt>
+				<dd class="function_c">
+					<div></div>
+				</dd>
+			</dl> 
+			<dl class="function" id="divCatalog">
+				<dt class="function_t">文章分类</dt>
+				<dd class="function_c">
+					<ul>
+						<?php foreach($this->data['categories'] as $v){ ?>
+							<li style="<?php echo $v['level']?'margin-left:'.($v['level']*10).'px' : ''; ?>">
+								<a href="index.php?module=article&id=<?php echo $v['c_id'];?>" target='_self'><?php echo $v['c_name']; ?></a>
+							</li>
+						<?php } ?>
+					</ul>
+				</dd>
+			</dl> 
+			<dl class="function" id="divComments">
+				<dt class="function_t">最新留言</dt>
+				<dd class="function_c">
+					<ul></ul>
+				</dd>
+			</dl> 
+			<dl class="function" id="divArchives">
+				<dt class="function_t">文章归档</dt>
+				<dd class="function_c">
+					<ul></ul>
+				</dd>
+			</dl> 
+			<dl class="function" id="divFavorites">
+				<dt class="function_t">网站收藏</dt>
+				<dd class="function_c">
+					<ul><li><a href="" target="_blank">myblog社区</a></li><li><a href=""									target="_blank">myblog应用中心</a></li>
+					</ul>
+				</dd>
+			</dl> 
+<dl class="function" id="divLinkage">
+<dt class="function_t">友情链接</dt><dd class="function_c">
+
+
+<ul><li><a href="" target="_blank" title="myblog开源博客系统">myblog官网</a></li></ul>
+
+</dd>
+</dl> 
+<dl class="function" id="divMisc">
+<dt style="display:none;"></dt><dd class="function_c">
+
+
+<ul><li><a href="" target="_blank"><img src="Public/image/logo/myblog.gif" height="31" width="88" alt="myblog" /></a></li><li><a href="" target="_blank"><img src="Public/image/logo/rss.png" height="31" width="88" alt="订阅本站的 RSS 2.0 新闻聚合" /></a></li></ul>
+
+</dd>
+</dl>		</div>
+		<div id="divBottom">
+        	<h3 id="BlogCopyRight">
+                                            	Copyright © 2008-2028 PHP150912 All Rights Reserved            </h3>
+			<h4 id="BlogPowerBy">Powered by <a href="" title="myblog" target="_blank">myblog V1.0 Release 20151116</a></h4>
+		</div><div class="clear"></div>
+	</div><div class="clear"></div>
+	</div><div class="clear"></div>
+</div>
+</body>
+</html>
